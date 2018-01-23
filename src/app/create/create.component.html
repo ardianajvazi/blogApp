@@ -1,0 +1,18 @@
+<mat-card class="mat-card-margin">
+  <form class="example-form" [formGroup]="articleFrm" (ngSubmit)="addArticle(article,articleFrm.value)" *ngIf="articleFrm">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Article Title" name="title" [formControl]="articleFrm.controls['title']" formControlName="title">
+      <div class="alert" *ngIf="!articleFrm.controls['title'].valid && articleFrm.controls['title'].touched">
+        You must specify a title that's at least 5 characters long.
+      </div>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Description" id="content" required [formControl]="articleFrm.controls['content']" formControlName="content"></textarea>
+      <div class="alert" *ngIf="!articleFrm.controls['content'].valid && articleFrm.controls['content'].touched">
+        You must specify content that's at least 5 characters long.
+      </div>
+    </mat-form-field>
+    <button mat-button type="submit" name="button" [disabled]="!articleFrm.valid">Save</button>
+  </form>
+</mat-card>
